@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ePizzHub.Infrastructure\ePizzHub.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
