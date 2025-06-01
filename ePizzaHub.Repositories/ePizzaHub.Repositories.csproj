@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ePizzHub.Infrastructure\ePizzHub.Infrastructure.csproj" />
+    <ProjectReference Include="..\ePizzHub.Infrastructure\ePizzaHub.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

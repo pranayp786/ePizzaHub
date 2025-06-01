@@ -1,10 +1,7 @@
 ﻿using ePizzaHub.Repositories.Contracts;
 using ePizzHub.Infrastructure.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace ePizzaHub.Repositories.Concrete
 {
@@ -12,6 +9,13 @@ namespace ePizzaHub.Repositories.Concrete
     {
         public UserRepository(ePizzaHub_ScholarHatContext dbContext) : base(dbContext)
         {
+        }
+        public async Task<User> FindByUserNameAsync(string userName)
+        {
+            return await _dbContext
+                          .Users
+                          .Include(x => x.Roles)
+                          .FirstOrDefaultAsync(x => x.Email == userName);
         }
     }
 }
