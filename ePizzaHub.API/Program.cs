@@ -1,3 +1,4 @@
+using ePizzaHub.API.Middleware;
 using ePizzaHub.Core.Concrete;
 using ePizzaHub.Core.Contracts;
 using ePizzaHub.Repositories.Concrete;
@@ -21,9 +22,14 @@ builder.Services.AddDbContext<ePizzaHub_ScholarHatContext>(x =>
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IItemRepository, ItemRepository>();
+builder.Services.AddScoped<ICartRepository, CartRepository>();
+
 
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<ICartService, CartService>();
+builder.Services.AddTransient<IItemService, ItemService>();
 
 var app = builder.Build();
 
@@ -37,6 +43,10 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseMiddleware<CommonReponseMiddleware>();
+//app.UseMiddleware<SecondMiddleware>();
+
+
 
 app.MapControllers();
 
